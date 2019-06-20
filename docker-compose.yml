@@ -1,0 +1,13 @@
+version: "3"
+services:
+  zookeeper:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    build: .
+    depends_on:
+      - zookeeper
+    #command: sh -c './wait-for.sh zookeeper:2181 -- ./kafka_2.12-2.2.0/bin/kafka-server-start.sh kafka_2.12-2.2.0/config/server.properties'
+    ports:
+      - "9092:9092"
